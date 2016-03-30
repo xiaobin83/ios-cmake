@@ -47,8 +47,11 @@ endif (CMAKE_UNAME)
 
 # Force the compilers to gcc for iOS
 include (CMakeForceCompiler)
-CMAKE_FORCE_C_COMPILER (/usr/bin/gcc Apple)
-CMAKE_FORCE_CXX_COMPILER (/usr/bin/g++ Apple)
+set(XCODE_TOOLCHAIN /Applications/Xcode.app/Contents/Developer//Toolchains/XcodeDefault.xctoolchain)
+set(XCODE_BIN ${XCODE_TOOLCHAIN}/usr/bin)
+set(CMAKE_C_COMPILER ${XCODE_BIN}/clang)
+set(CMAKE_CXX_COMPILER ${XCODE_BIN}/clang++)
+set(CMAKE_FIND_ROOT_PATH ${XCODE_TOOLCHAIN_ROOT})
 set(CMAKE_AR ar CACHE FILEPATH "" FORCE)
 
 # Skip the platform compiler checks for cross compiling
@@ -93,6 +96,8 @@ endif (NOT DEFINED CMAKE_INSTALL_NAME_TOOL)
 # Setup iOS platform unless specified manually with IOS_PLATFORM
 if (NOT DEFINED IOS_PLATFORM)
 	set (IOS_PLATFORM "OS")
+else()
+	set(CMAKE_SYSTEM_PROCESSOR arm)
 endif (NOT DEFINED IOS_PLATFORM)
 set (IOS_PLATFORM ${IOS_PLATFORM} CACHE STRING "Type of iOS Platform")
 
