@@ -29,6 +29,7 @@
 #  Thanks to the android-cmake project for providing the command
 
 # Standard settings
+set_property (GLOBAL PROPERTY CURRENT_TARGET_TYPE "TARGET_IOS")
 set (CMAKE_SYSTEM_NAME Darwin)
 set (CMAKE_SYSTEM_VERSION 1)
 set (UNIX True)
@@ -210,4 +211,3 @@ macro (find_host_package)
 	set (CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 	set (CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 endmacro (find_host_package)
-
